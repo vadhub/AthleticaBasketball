@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp">
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/baseline_close_24"
+            app:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/spotImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/pin_drop_24dp_ffffff_fill0_wght200_grad0_opsz24"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/spotName"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/spotImage"
+            tools:text="Spot 1"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/spotTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spotName"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/spotImage"
+            android:text="Slots"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spotTime"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/spotImage"
+            android:layout_toRightOf="@id/spotImage"
+            tools:text="4 of 5"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/descriptionSpot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/review"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/spotImage"
+            android:layout_toRightOf="@id/spotImage"
+            tools:text="eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+
+        <Button
+            android:id="@+id/subscribe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/descriptionSpot"
+            android:layout_margin="10dp"
+            android:text="@string/subscribe"
+            android:textAllCaps="false" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

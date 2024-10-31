@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/chatFragment"
+        android:icon="@drawable/forum_24dp_ffffff_fill0_wght200_grad0_opsz24"
+        android:title="@string/chat" />
+
+    <item
+        android:id="@+id/mapFragment"
+        android:icon="@drawable/pin_drop_24dp_ffffff_fill0_wght200_grad0_opsz24"
+        android:title="@string/map" />
+
+    <item
+        android:id="@+id/accountFragment"
+        android:icon="@drawable/account_circle_24dp_ffffff_fill0_wght200_grad0_opsz24"
+        android:title="@string/account" />
+</menu>

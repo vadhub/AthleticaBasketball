@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">AthleticaBasketball</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="enter">enter</string>
+    <string name="nik">nik</string>
+    <string name="firstName">First name</string>
+    <string name="lastName">Last name</string>
+    <string name="login">login</string>
+
+    <string name="sigh_out">Sigh out</string>
+    <string name="enter_username">Enter username</string>
+    <string name="enter_mail">Enter mail</string>
+    <string name="enter_password">Enter password</string>
+    <string name="user_with_this_nik_already_exist">User with this nik already exist</string>
+    <string name="invalid_password_or_username">Invalid password or username</string>
+    <string name="message">message</string>
+    <string name="account">account</string>
+    <string name="search">search</string>
+    <string name="registration">Registration</string>
+    <string name="user_unauthorized">User unauthorized</string>
+    <string name="internet_available">Internet is not available</string>
+    <string name="field_empty">Field can`t be empty</string>
+    <string name="error_loading_icon">Error loading icon</string>
+    <string name="error_loading">Error loading</string>
+    <string name="can_t_load_image">can\'t load image</string>
+    <string name="delete">delete</string>
+    <string name="change_nik">Change nik</string>
+    <string name="change_photo">Change photo</string>
+    <string name="new_nik">New nik</string>
+    <string name="report">report</string>
+    <string name="valid_email">Enter valid Email address!</string>
+    <string name="chat">chat</string>
+    <string name="map">map</string>
+    <string name="send">send</string>
+    <string name="show_reviews">show reviews</string>
+    <string name="creat_spot">create spot</string>
+    <string name="subscribe">subscribe</string>
+    <string name="nameSpot">name spot</string>
+    <string name="description">description</string>
+
+</resources>
