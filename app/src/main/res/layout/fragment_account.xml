@@ -37,6 +37,13 @@
             android:textColor="@color/white"
             android:textSize="24sp" />
 
+        <TextView
+            android:id="@+id/games"
+            android:text="Игр сыграно: 19"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
     <Button
