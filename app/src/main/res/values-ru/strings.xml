@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AthleticaBasketball</string>
+    <string name="email">email</string>
+    <string name="password">пароль</string>
+    <string name="enter">вход</string>
+    <string name="nik">ник</string>
+    <string name="firstName">Имя</string>
+    <string name="lastName">Фамилия</string>
+    <string name="login">логин</string>
+    <string name="sigh_out">выйти</string>
+    <string name="enter_username">Введите имя</string>
+    <string name="enter_mail">Введите почту</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="user_with_this_nik_already_exist">Пользователь с этим ником уже существует</string>
+    <string name="invalid_password_or_username">Неверное почта или пароль</string>
+    <string name="message">сообщение</string>
+    <string name="account">аккаунт</string>
+    <string name="registration">Регистрация</string>
+    <string name="user_unauthorized">Пользователь не авторизован</string>
+    <string name="internet_available">Интернет не доступет</string>
+    <string name="field_empty">Поля не могут быть пустыми</string>
+    <string name="error_loading_icon">Ошибка загрузки иконки</string>
+    <string name="error_loading">Ошибка загрузки</string>
+    <string name="can_t_load_image">не могу загрузить изображение</string>
+    <string name="delete">удалить</string>
+    <string name="change_nik">Изменить ник</string>
+    <string name="change_photo">Инзменить фото</string>
+    <string name="new_nik">Новый ник</string>
+    <string name="valid_email">Введите правильный адрес электронной почты</string>
+    <string name="chat">чат</string>
+    <string name="map">карта</string>
+    <string name="send">отправить</string>
+    <string name="show_reviews">показать отзывы</string>
+    <string name="creat_spot">создать место</string>
+    <string name="subscribe">подписаться</string>
+    <string name="nameSpot">имя места</string>
+    <string name="description">описание</string>
+    <string name="slots">Слоты</string>
+</resources>

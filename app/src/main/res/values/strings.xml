@@ -13,10 +13,10 @@
     <string name="enter_mail">Enter mail</string>
     <string name="enter_password">Enter password</string>
     <string name="user_with_this_nik_already_exist">User with this nik already exist</string>
-    <string name="invalid_password_or_username">Invalid password or username</string>
+    <string name="invalid_password_or_username">Invalid password or email</string>
     <string name="message">message</string>
     <string name="account">account</string>
-    <string name="search">search</string>
+    <string name="search" translatable="false">search</string>
     <string name="registration">Registration</string>
     <string name="user_unauthorized">User unauthorized</string>
     <string name="internet_available">Internet is not available</string>
@@ -28,7 +28,7 @@
     <string name="change_nik">Change nik</string>
     <string name="change_photo">Change photo</string>
     <string name="new_nik">New nik</string>
-    <string name="report">report</string>
+    <string name="report" translatable="false">report</string>
     <string name="valid_email">Enter valid Email address!</string>
     <string name="chat">chat</string>
     <string name="map">map</string>
@@ -38,5 +38,6 @@
     <string name="subscribe">subscribe</string>
     <string name="nameSpot">name spot</string>
     <string name="description">description</string>
+    <string name="slots">Slots</string>
 
 </resources>
