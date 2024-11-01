@@ -62,6 +62,7 @@ class AccountFragment : BaseFragment() {
         binding.imageIcon.setOnClickListener { startCrop() }
         binding.changeNik.setOnClickListener { createSettingsDialog() }
         username = binding.usernameTextView
+        username.text = userDetails.nickname
 
         load.uploadIcon.observe(viewLifecycleOwner) {
             when (it) {
@@ -87,7 +88,7 @@ class AccountFragment : BaseFragment() {
         val changeNick: (new: String) -> Unit = {
             userViewModel.changeUsername(it, userId)
             configuration.saveLogin(it)
-            RemoteInstance.setUser(userDetails.copy(nickname =it))
+            RemoteInstance.setUser(userDetails.copy(nickname=it))
             username.text = it
         }
         val settingsDialog = SettingsAccount(changeNick)

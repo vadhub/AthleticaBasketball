@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 RemoteInstance.setUser(
                     User(
                         configuration.getIdUser(),
-                        "",
+                        configuration.getNickname(),
                         "",
                         "",
                         configuration.getLogin(),
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
                 Log.d(
                     "$$$",
-                    "${configuration.getPass()} ${configuration.getIdUser()} ${configuration.getLogin()} "
+                    "${configuration.getPass()} ${configuration.getIdUser()}  ${configuration.getNickname()} ${configuration.getLogin()} "
                 )
                 navController.navigate(R.id.mapFragment)
             }
