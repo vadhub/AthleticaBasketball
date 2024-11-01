@@ -154,7 +154,7 @@ class MapFragment : BaseFragment(), InputListener {
         placemark.addTapListener(placemarkTapListener)
     }
 
-    private fun floorToSixAfterDot(value: Double) = floor(value * 1000.0) / 1000.0
+    private fun floorToSixAfterDot(value: Double) = floor(value * 10000.0) / 10000.0
 
 
 }
