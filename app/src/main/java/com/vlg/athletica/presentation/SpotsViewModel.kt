@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.vlg.athletica.data.remote.Resource
 import com.vlg.athletica.data.repository.SpotRepository
+import com.vlg.athletica.model.Slot
 import com.vlg.athletica.model.SpotResponse
 import ir.logicbase.livex.SingleLiveEvent
 import kotlinx.coroutines.launch
@@ -24,6 +25,10 @@ class SpotsViewModel(private val spotRepository: SpotRepository): ViewModel() {
 
     fun saveSpot(spotResponse: SpotResponse) = viewModelScope.launch {
         this@SpotsViewModel.spotResponse.postValue(spotRepository.addSpot(spotResponse))
+    }
+
+    fun saveSlot(slot: Slot) = viewModelScope.launch {
+        this@SpotsViewModel.spotResponse.postValue(spotRepository.addSlot(slot))
     }
 
     fun getSpotByLatAndLon(lat: String, lon: String) = viewModelScope.launch {

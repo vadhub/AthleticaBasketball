@@ -20,9 +20,9 @@ data class SpotResponse(
     @Expose
     val lon: String,
 
-    @SerializedName("description")
+    @SerializedName("address")
     @Expose
-    val description: String,
+    val address: String,
 
     @SerializedName("reviews")
     @Expose

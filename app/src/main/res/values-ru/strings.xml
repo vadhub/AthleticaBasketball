@@ -37,4 +37,7 @@
     <string name="nameSpot">имя места</string>
     <string name="description">описание</string>
     <string name="slots">Слоты</string>
+    <string name="available">активен</string>
+    <string name="not_available">не активен</string>
+    <string name="create_new_slot">создать\n новый слот</string>
 </resources>

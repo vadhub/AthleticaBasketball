@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.vlg.athletica.presentation.MapFragment"
+        android:name="com.vlg.athletica.presentation.map.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" />
     <fragment

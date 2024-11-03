@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/user"
-        tools:text="User"
+        android:text="Кто-то"
         android:textStyle="bold"
         android:textSize="24sp"
         android:padding="10dp"
@@ -18,13 +18,12 @@
 
     <View
         android:background="@color/black"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"/>
 
     <TextView
         android:id="@+id/message"
-        tools:text="eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-        eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        android:text="Идешь?"
         android:padding="10dp"
         android:textSize="16sp"
         android:layout_width="match_parent"

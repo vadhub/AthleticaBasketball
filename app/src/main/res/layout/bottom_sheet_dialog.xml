@@ -6,82 +6,182 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp">
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/spotName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:text="Spot 1"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_weight="0.1"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/baseline_close_24"
+                app:tint="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:text="Ул. АААААА. 1111111111"
+                android:layout_weight="0.1"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/review"
+                android:layout_weight="0.1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Оценка: 4 из 5"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/slots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"/>
+        </ScrollView>
+
+<!--        spot -->
 
         <ImageView
-            android:id="@+id/close"
+            android:visibility="gone"
+            android:id="@+id/back"
+            android:src="@drawable/ic_arrow_back_24"
+            app:tint="@color/black"
             android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/baseline_close_24"
-            app:tint="@color/black" />
-
-        <ImageView
-            android:id="@+id/spotImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/pin_drop_24dp_ffffff_fill0_wght200_grad0_opsz24"
-            app:tint="@color/black" />
+            android:layout_height="32dp"/>
 
         <TextView
-            android:id="@+id/spotName"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/spotImage"
-            tools:text="Spot 1"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/spotTime"
+            android:visibility="gone"
+            android:text="17:00"
+            android:gravity="center"
+            android:id="@+id/slot"
+            android:textSize="20sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/spotName"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/spotImage"
-            android:text="@string/slots"
-            android:textSize="15sp" />
+            android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/review"
+            android:visibility="gone"
+            android:id="@+id/textAsk"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:text="@string/will_you_come"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/spotTime"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/spotImage"
-            android:layout_toRightOf="@id/spotImage"
-            android:text="Оценка: 4 из 5"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/descriptionSpot"
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:visibility="gone"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/review"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/spotImage"
-            android:layout_toRightOf="@id/spotImage"
-            tools:text="eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/yes"
+                android:text="@string/yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <RadioButton
+                android:id="@+id/no"
+                android:text="@string/no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>
 
+
+        <!--        spot -->
 
         <Button
             android:id="@+id/subscribe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/descriptionSpot"
             android:layout_margin="10dp"
             android:text="@string/subscribe"
             android:textAllCaps="false" />
 
-    </RelativeLayout>
+    </LinearLayout>
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="2dp">-->
+
+<!--        <Button-->
+<!--            android:id="@+id/spotTime"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/spotName"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_toEndOf="@id/spotImage"-->
+<!--            android:text="@string/slots"-->
+<!--            android:textSize="15sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/review"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/spotTime"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_toEndOf="@id/spotImage"-->
+<!--            android:layout_toRightOf="@id/spotImage"-->
+<!--            android:text="Оценка: 4 из 5"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="15sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/descriptionSpot"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/review"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_toEndOf="@id/spotImage"-->
+<!--            android:layout_toRightOf="@id/spotImage"-->
+<!--            tools:text="eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="16sp" />-->
+
+
+<!--        <Button-->
+<!--            android:id="@+id/subscribe"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/descriptionSpot"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:text="@string/subscribe"-->
+<!--            android:textAllCaps="false" />-->
+
+<!--    </RelativeLayout>-->
 
 </androidx.cardview.widget.CardView>

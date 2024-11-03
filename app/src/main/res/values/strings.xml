@@ -39,5 +39,11 @@
     <string name="nameSpot">name spot</string>
     <string name="description">description</string>
     <string name="slots">Slots</string>
+    <string name="available">available</string>
+    <string name="not_available">not available</string>
+    <string name="create_new_slot">create\n new slot</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="will_you_come">Will you come?</string>
 
 </resources>

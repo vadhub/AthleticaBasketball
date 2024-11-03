@@ -99,5 +99,6 @@ object RemoteInstance {
         retrofitForLogin(username, password).build().create(AuthService::class.java)
 
     fun apiSpots(): SpotService = retrofitWithAuth().build().create(SpotService::class.java)
+    fun apiSlots(): SlotService = retrofitWithAuth().build().create(SlotService::class.java)
 
 }

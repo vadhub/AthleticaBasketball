@@ -1,4 +1,4 @@
-package com.vlg.athletica.presentation
+package com.vlg.athletica.presentation.map
 
 import android.os.Bundle
 import android.view.LayoutInflater

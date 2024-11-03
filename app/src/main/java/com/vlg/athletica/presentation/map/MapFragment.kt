@@ -1,22 +1,20 @@
-package com.vlg.athletica.presentation
+package com.vlg.athletica.presentation.map
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.vlg.athletica.R
 import com.vlg.athletica.data.remote.RemoteInstance
-import com.vlg.athletica.data.remote.Resource
 import com.vlg.athletica.data.repository.SpotRepository
 import com.vlg.athletica.databinding.FragmentMapBinding
 import com.vlg.athletica.model.SpotResponse
+import com.vlg.athletica.presentation.BaseFragment
+import com.vlg.athletica.presentation.SpotsViewModel
+import com.vlg.athletica.presentation.SpotsViewModelFactory
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.map.CameraPosition
@@ -40,42 +38,12 @@ class MapFragment : BaseFragment(), InputListener {
     private val placemarkTapListener = MapObjectTapListener { _, point ->
         spotViewModel.getSpotByLatAndLon(floorToSixAfterDot(point.latitude).toString(), floorToSixAfterDot(point.longitude).toString())
 
-        val dialog = BottomSheetDialog(thisContext)
-        val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog, null)
-        val btnClose = view.findViewById<Button>(R.id.subscribe)
-        val name = view.findViewById<TextView>(R.id.spotName)
-        val close = view.findViewById<ImageView>(R.id.close)
-        val description = view.findViewById<TextView>(R.id.descriptionSpot)
-
-        close.setOnClickListener { dialog.dismiss() }
-
+        val dialog = BottomSheetDialogSpot(thisContext)
         spotViewModel.spot.observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Loading -> {}
+            dialog.setField(it) {
 
-                is Resource.Success -> {
-                    name.text = it.result.name
-                    description.text = it.result.description
-                    Log.d("@@@@", it.result.toString())
-                }
-
-                is Resource.Failure -> {
-                    Toast.makeText(
-                        thisContext,
-                        getString(R.string.error_loading),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
             }
         }
-
-        btnClose.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        dialog.setCancelable(false)
-        dialog.setContentView(view)
-
         dialog.show()
         true
     }
