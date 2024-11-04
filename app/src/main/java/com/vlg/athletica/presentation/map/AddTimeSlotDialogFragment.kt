@@ -12,6 +12,7 @@ import android.widget.NumberPicker
 import android.widget.TextView
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
+import com.vlg.athletica.R
 import com.vlg.athletica.databinding.FragmentDialogAddSlotTimeBinding
 import com.vlg.athletica.model.TimeSlot
 
@@ -52,7 +53,7 @@ class AddTimeSlotDialogFragment(private val saveSlot: (TimeSlot, String, Int) ->
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         addSpot.setOnClickListener {
             saveSlot.invoke(
-                TimeSlot(
+                TimeSlot(0,
                     spotId,
                     setStartTime.text.toString()+":00",
                     setEndTime.text.toString()+":00",
@@ -65,7 +66,7 @@ class AddTimeSlotDialogFragment(private val saveSlot: (TimeSlot, String, Int) ->
         countPlayerPicker.minValue = 3
         countPlayerPicker.maxValue = 10
         countPlayerPicker.setOnValueChangedListener { picker, oldVal, newVal ->
-            Log.d("?!!!!!", "$newVal")
+            countPlayer = newVal
         }
 
         setStartTime.setOnClickListener {
@@ -135,9 +136,9 @@ class AddTimeSlotDialogFragment(private val saveSlot: (TimeSlot, String, Int) ->
             hourNew = "0$hourNew"
         }
         if (view == timePickerStart) {
-            setStartTime.text = "$hourNew:$minuteNew"
+            setStartTime.text = "${getString(R.string.set_time_start)}: $hourNew:$minuteNew"
         } else if (view == timePickerEnd) {
-            setEndTime.text = "$hourNew:$minuteNew"
+            setEndTime.text = "${getString(R.string.set_time_end)}: $hourNew:$minuteNew"
         }
     }
 }

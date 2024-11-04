@@ -1,22 +1,31 @@
 package com.vlg.athletica.presentation.map
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.CompoundButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.LifecycleOwner
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.vlg.athletica.R
 import com.vlg.athletica.data.remote.Resource
 import com.vlg.athletica.model.TimeSlot
 import com.vlg.athletica.model.SpotResponse
+import com.vlg.athletica.model.Vote
+import com.vlg.athletica.presentation.VoteViewModel
 
-class BottomSheetDialogSpot(private val context: Context) : BottomSheetDialog(context) {
+class BottomSheetDialogSpot(
+    private val context: Context,
+    private val voteViewModel: VoteViewModel,
+    private val viewLifecycleOwner: LifecycleOwner,
+    private val userId: Long
+) : BottomSheetDialog(context), CompoundButton.OnCheckedChangeListener {
 
     private lateinit var subscribe: Button
     private lateinit var name: TextView
@@ -30,6 +39,9 @@ class BottomSheetDialogSpot(private val context: Context) : BottomSheetDialog(co
     private lateinit var radioGroup: RadioGroup
     private lateinit var radioButtonYes: RadioButton
     private lateinit var radioButtonNo: RadioButton
+    private lateinit var countIsCome: TextView
+    private var vote = 0
+    private var slotId = -1L
 
     fun setView() {
         val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog, null)
@@ -46,6 +58,7 @@ class BottomSheetDialogSpot(private val context: Context) : BottomSheetDialog(co
         radioGroup = view.findViewById(R.id.radioGroup)
         radioButtonNo = view.findViewById(R.id.no)
         radioButtonYes = view.findViewById(R.id.yes)
+        countIsCome = view.findViewById(R.id.comeCount)
 
         back.setOnClickListener {
             visibilityChange(false, TimeSlot.empty())
@@ -55,6 +68,18 @@ class BottomSheetDialogSpot(private val context: Context) : BottomSheetDialog(co
         setCancelable(false)
 
         close.setOnClickListener { dismiss() }
+
+        voteViewModel.voteLiveData.observe(viewLifecycleOwner) {
+            countIsCome.text  = context.getString(R.string.come) + "${vote++}"
+        }
+
+        voteViewModel.voteOneLiveData.observe(viewLifecycleOwner) {
+            if (it.isCome == 1) {
+                radioButtonYes.isChecked = true
+            } else {
+                radioButtonNo.isChecked = true
+            }
+        }
     }
 
 
@@ -113,29 +138,53 @@ class BottomSheetDialogSpot(private val context: Context) : BottomSheetDialog(co
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun visibilityChange(isSlot: Boolean, timeSlotEntity: TimeSlot) {
         if (isSlot) {
+            slotId = timeSlotEntity.id
             slot.visibility = View.VISIBLE
             slot.text = timeSlotEntity.startTime.substring(0, 5)
+            voteViewModel.getCountVoteBySlotId(timeSlotEntity.id)
+            voteViewModel.getVote(userId, slotId)
+            voteViewModel.voteCountLiveData.observe(viewLifecycleOwner) {
+                vote = it
+                countIsCome.text = context.getString(R.string.come) + "$it"
+            }
+            radioButtonYes.setOnCheckedChangeListener(this)
+            radioButtonNo.setOnCheckedChangeListener(this)
             back.visibility = View.VISIBLE
             textAsk.visibility = View.VISIBLE
             radioGroup.visibility = View.VISIBLE
             radioButtonNo.visibility = View.VISIBLE
             radioButtonYes.visibility = View.VISIBLE
+            countIsCome.visibility = View.VISIBLE
 
             subscribe.visibility = View.GONE
             slotList.visibility = View.GONE
         } else {
+            slot.text = ""
+            countIsCome.text = ""
+            vote = 0
+            slotId = -1
             slot.visibility = View.GONE
             back.visibility = View.GONE
             textAsk.visibility = View.GONE
             radioGroup.visibility = View.GONE
             radioButtonNo.visibility = View.GONE
             radioButtonYes.visibility = View.GONE
+            countIsCome.visibility = View.GONE
 
             subscribe.visibility = View.VISIBLE
             slotList.visibility = View.VISIBLE
+        }
+    }
 
+    @SuppressLint("SetTextI18n")
+    override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+        if (buttonView == radioButtonYes) {
+            voteViewModel.saveVote(Vote(userId, slotId, 1))
+        } else if (buttonView == radioButtonNo) {
+            voteViewModel.removeVote(userId, slotId)
         }
     }
 }

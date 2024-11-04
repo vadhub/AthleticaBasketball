@@ -5,6 +5,10 @@ import com.google.gson.annotations.SerializedName
 
 data class TimeSlot(
 
+    @SerializedName("id")
+    @Expose
+    val id: Long,
+
     @SerializedName("spotId")
     @Expose
     val spotId: Long,
@@ -22,6 +26,6 @@ data class TimeSlot(
     val availability: Int
     ) {
     companion object {
-        fun empty() = TimeSlot(-1,"", "", -1)
+        fun empty() = TimeSlot(-1, -1,"", "", -1)
     }
 }

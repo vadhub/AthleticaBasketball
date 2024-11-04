@@ -50,5 +50,6 @@
     <string name="set_time_end">set time end</string>
     <string name="nameEvent">name event</string>
     <string name="players">count of players</string>
+    <string name="come">"will come: "</string>
 
 </resources>

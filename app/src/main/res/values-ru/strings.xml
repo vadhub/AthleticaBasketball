@@ -48,4 +48,5 @@
     <string name="set_time_end">конец</string>
     <string name="nameEvent">мероприятие</string>
     <string name="players">количество игроков</string>
+    <string name="come">"придут: "</string>
 </resources>

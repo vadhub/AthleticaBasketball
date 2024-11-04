@@ -11,6 +11,7 @@ import com.vlg.athletica.R
 import com.vlg.athletica.data.remote.RemoteInstance
 import com.vlg.athletica.data.repository.EventRepository
 import com.vlg.athletica.data.repository.SpotRepository
+import com.vlg.athletica.data.repository.VoteRepository
 import com.vlg.athletica.databinding.FragmentMapBinding
 import com.vlg.athletica.model.Event
 import com.vlg.athletica.model.SpotResponse
@@ -20,6 +21,8 @@ import com.vlg.athletica.presentation.EventViewModel
 import com.vlg.athletica.presentation.EventViewModelFactory
 import com.vlg.athletica.presentation.SpotsViewModel
 import com.vlg.athletica.presentation.SpotsViewModelFactory
+import com.vlg.athletica.presentation.VoteViewModel
+import com.vlg.athletica.presentation.VoteViewModelFactory
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.map.CameraPosition
@@ -44,10 +47,13 @@ class MapFragment : BaseFragment(), InputListener {
         EventViewModelFactory(EventRepository(RemoteInstance))
     }
 
+    private val voteViewModel: VoteViewModel by activityViewModels {
+        VoteViewModelFactory(VoteRepository(RemoteInstance))
+    }
+
     private val placemarkTapListener = MapObjectTapListener { _, point ->
         spotViewModel.getSpotByLatAndLon(floorToSixAfterDot(point.latitude).toString(), floorToSixAfterDot(point.longitude).toString())
-
-        val dialog = BottomSheetDialogSpot(thisContext)
+        val dialog = BottomSheetDialogSpot(thisContext, voteViewModel, viewLifecycleOwner, configuration.getIdUser())
         dialog.setView()
         spotViewModel.spot.observe(viewLifecycleOwner) {
             dialog.setField(it) { idSpot ->
