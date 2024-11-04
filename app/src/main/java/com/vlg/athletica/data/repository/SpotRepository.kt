@@ -3,7 +3,7 @@ package com.vlg.athletica.data.repository
 import androidx.lifecycle.MutableLiveData
 import com.vlg.athletica.data.remote.RemoteInstance
 import com.vlg.athletica.data.remote.Resource
-import com.vlg.athletica.model.Slot
+import com.vlg.athletica.model.TimeSlot
 import com.vlg.athletica.model.SpotResponse
 
 class SpotRepository(private val remoteInstance: RemoteInstance) {
@@ -36,9 +36,9 @@ class SpotRepository(private val remoteInstance: RemoteInstance) {
         return Resource.Failure(Exception("fail"))
     }
 
-    suspend fun addSlot(slot: Slot): Resource<Unit> {
+    suspend fun addSlot(timeSlot: TimeSlot): Resource<Unit> {
         val response = remoteInstance.apiSlots()
-            .addSlot(slot)
+            .addSlot(timeSlot)
 
         if (response.isSuccessful) {
             val body = response.body()

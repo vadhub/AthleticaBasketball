@@ -1,5 +1,6 @@
 package com.vlg.athletica.presentation.auth
 
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -24,14 +25,14 @@ open class AuthBaseFragment : BaseFragment(), HandleResponse<User>  {
     }
 
     override fun success(t: User) {
-
-        configuration.saveIdUser(t.userId)
+        Log.d("!!!!", t.idUser.toString())
+        configuration.saveIdUser(t.idUser)
         configuration.saveLogin(t.email)
         configuration.saveNickname(t.nickname)
         configuration.savePass(qwrt)
         configuration.saveFirstStart(true)
 
-        RemoteInstance.setUser(User(t.userId, t.nickname, t.firstname, t.lastname, t.email, qwrt))
+        RemoteInstance.setUser(User(t.idUser, t.nickname, t.firstname, t.lastname, t.email, qwrt))
 
         findNavController().navigate(R.id.mapFragment)
 

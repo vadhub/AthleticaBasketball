@@ -38,25 +38,15 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:lines="3"
-            android:hint="@string/description" />
+            android:hint="@string/address" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:text="@string/creat_spot"
+        android:text="@string/create_spot"
         android:id="@+id/createSpot"
-        android:layout_width="0dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageSelect"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/descriptionSpot"/>
-
-    <ImageButton
-        android:text="@string/creat_spot"
-        android:id="@+id/imageSelect"
-        android:layout_width="wrap_content"
-        android:src="@drawable/add_photo_alternate_24dp_000000_fill0_wght300_grad0_opsz24"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

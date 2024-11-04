@@ -34,7 +34,7 @@
     <string name="map">map</string>
     <string name="send">send</string>
     <string name="show_reviews">show reviews</string>
-    <string name="creat_spot">create spot</string>
+    <string name="create_spot">create spot</string>
     <string name="subscribe">subscribe</string>
     <string name="nameSpot">name spot</string>
     <string name="description">description</string>
@@ -45,5 +45,10 @@
     <string name="yes">yes</string>
     <string name="no">no</string>
     <string name="will_you_come">Will you come?</string>
+    <string name="address">address</string>
+    <string name="set_time_start">set time start</string>
+    <string name="set_time_end">set time end</string>
+    <string name="nameEvent">name event</string>
+    <string name="players">count of players</string>
 
 </resources>

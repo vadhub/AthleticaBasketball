@@ -1,7 +1,6 @@
 package com.vlg.athletica.presentation.map
 
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -14,6 +13,7 @@ import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.vlg.athletica.R
 import com.vlg.athletica.data.remote.Resource
+import com.vlg.athletica.model.TimeSlot
 import com.vlg.athletica.model.SpotResponse
 
 class BottomSheetDialogSpot(private val context: Context) : BottomSheetDialog(context) {
@@ -31,8 +31,7 @@ class BottomSheetDialogSpot(private val context: Context) : BottomSheetDialog(co
     private lateinit var radioButtonYes: RadioButton
     private lateinit var radioButtonNo: RadioButton
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    fun setView() {
         val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog, null)
 
         subscribe = view.findViewById(R.id.subscribe)
@@ -49,7 +48,7 @@ class BottomSheetDialogSpot(private val context: Context) : BottomSheetDialog(co
         radioButtonYes = view.findViewById(R.id.yes)
 
         back.setOnClickListener {
-            visibilityChange(false)
+            visibilityChange(false, TimeSlot.empty())
         }
 
         setContentView(view)
@@ -58,23 +57,23 @@ class BottomSheetDialogSpot(private val context: Context) : BottomSheetDialog(co
         close.setOnClickListener { dismiss() }
     }
 
-    fun setField(resource: Resource<SpotResponse>, addNewSpot: () -> Unit) {
+
+    fun setField(resource: Resource<SpotResponse>, addNewSpot: (spotId: Long) -> Unit) {
         when (resource) {
             is Resource.Loading -> {}
 
             is Resource.Success -> {
                 name.text = resource.result.name
                 address.text = resource.result.address
-                resource.result.slots?.forEach {
+                resource.result.timeSlots?.forEach {
                     slotList.addView(createSlot(it.startTime, it.availability) {
-                        visibilityChange(true)
+                        visibilityChange(true, it)
                     })
                 }
 
-                slotList.addView(createSlot(context.getString(R.string.create_new_slot), 0) {
-                    addNewSpot.invoke()
+                slotList.addView(createSlotButton(context.getString(R.string.create_new_slot)) {
+                    addNewSpot.invoke(resource.result.idSpot)
                 })
-                Log.d("@@@@", resource.result.toString())
             }
 
             is Resource.Failure -> {
@@ -92,22 +91,32 @@ class BottomSheetDialogSpot(private val context: Context) : BottomSheetDialog(co
         val timeTextView = view.findViewById<TextView>(R.id.startDateSlot)
         val availableTextView = view.findViewById<TextView>(R.id.available)
 
-        timeTextView.text = time
+        timeTextView.text = time.substring(0, 5)
         if (available == 0) {
             availableTextView.text = context.getText(R.string.not_available)
-            availableTextView.isClickable = false
+            timeTextView.isClickable = false
             availableTextView.setTextColor(context.resources.getColor(R.color.non_available))
         } else {
-            availableTextView.text = context.getText(R.string.not_available)
-            availableTextView.setOnClickListener { clickListener.invoke() }
+            availableTextView.text = context.getText(R.string.available)
+            timeTextView.setOnClickListener { clickListener.invoke() }
         }
 
         return view
     }
 
-    private fun visibilityChange(isSlot: Boolean) {
+    private fun createSlotButton(text: String, clickListener: () -> Unit) : View {
+        val view: View = layoutInflater.inflate(R.layout.slot, null)
+        val timeTextView = view.findViewById<TextView>(R.id.startDateSlot)
+        timeTextView.text = text
+        timeTextView.setOnClickListener { clickListener.invoke() }
+        return view
+    }
+
+
+    private fun visibilityChange(isSlot: Boolean, timeSlotEntity: TimeSlot) {
         if (isSlot) {
             slot.visibility = View.VISIBLE
+            slot.text = timeSlotEntity.startTime.substring(0, 5)
             back.visibility = View.VISIBLE
             textAsk.visibility = View.VISIBLE
             radioGroup.visibility = View.VISIBLE

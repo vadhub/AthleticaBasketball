@@ -32,7 +32,7 @@
     <string name="map">карта</string>
     <string name="send">отправить</string>
     <string name="show_reviews">показать отзывы</string>
-    <string name="creat_spot">создать место</string>
+    <string name="create_spot">создать место</string>
     <string name="subscribe">подписаться</string>
     <string name="nameSpot">имя места</string>
     <string name="description">описание</string>
@@ -40,4 +40,12 @@
     <string name="available">активен</string>
     <string name="not_available">не активен</string>
     <string name="create_new_slot">создать\n новый слот</string>
+    <string name="yes">да</string>
+    <string name="no">нет</string>
+    <string name="will_you_come">Вы придете?</string>
+    <string name="address">адресс</string>
+    <string name="set_time_start">начало</string>
+    <string name="set_time_end">конец</string>
+    <string name="nameEvent">мероприятие</string>
+    <string name="players">количество игроков</string>
 </resources>

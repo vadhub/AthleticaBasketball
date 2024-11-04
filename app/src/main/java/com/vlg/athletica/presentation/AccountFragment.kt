@@ -41,7 +41,7 @@ class AccountFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userDetails = RemoteInstance.user
-        userId = userDetails.userId
+        userId = userDetails.idUser
     }
 
     override fun onCreateView(

@@ -24,11 +24,11 @@ data class SpotResponse(
     @Expose
     val address: String,
 
+    @SerializedName("timeSlots")
+    @Expose
+    val timeSlots: List<TimeSlot>?,
+
     @SerializedName("reviews")
     @Expose
-    val reviews: List<Review>?,
-
-    @SerializedName("slots")
-    @Expose
-    val slots: List<Slot>?
+    val reviews: List<Review>?
 )

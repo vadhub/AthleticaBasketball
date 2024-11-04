@@ -100,5 +100,6 @@ object RemoteInstance {
 
     fun apiSpots(): SpotService = retrofitWithAuth().build().create(SpotService::class.java)
     fun apiSlots(): SlotService = retrofitWithAuth().build().create(SlotService::class.java)
+    fun apiEvents(): EventService = retrofitWithAuth().build().create(EventService::class.java)
 
 }

@@ -10,7 +10,7 @@ import retrofit2.http.Query
 
 interface SpotService {
 
-    @GET("api-v1/spots")
+    @GET("api-v1/spots?projection=spotWithSlots")
     suspend fun getSpots() : Response<Main>
 
     @POST("api-v1/spots")

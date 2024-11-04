@@ -7,16 +7,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.vlg.athletica.data.SaveConfiguration
 import com.vlg.athletica.data.remote.RemoteInstance
+import com.vlg.athletica.data.remote.RemoteInstance.setPicasso
 import com.vlg.athletica.databinding.ActivityMainBinding
 import com.vlg.athletica.model.User
 
@@ -62,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                     "${configuration.getPass()} ${configuration.getIdUser()}  ${configuration.getNickname()} ${configuration.getLogin()} "
                 )
                 navController.navigate(R.id.mapFragment)
+                setPicasso(this)
             }
         } else {
             Snackbar.make(

@@ -3,11 +3,11 @@ package com.vlg.athletica.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Slot(
+data class TimeSlot(
 
-    @SerializedName("id")
+    @SerializedName("spotId")
     @Expose
-    val idSlot: Long,
+    val spotId: Long,
 
     @SerializedName("startTime")
     @Expose
@@ -20,4 +20,8 @@ data class Slot(
     @SerializedName("availability")
     @Expose
     val availability: Int
-    )
+    ) {
+    companion object {
+        fun empty() = TimeSlot(-1,"", "", -1)
+    }
+}

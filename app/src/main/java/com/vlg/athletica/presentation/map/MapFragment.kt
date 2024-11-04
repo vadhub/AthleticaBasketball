@@ -9,10 +9,15 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.vlg.athletica.R
 import com.vlg.athletica.data.remote.RemoteInstance
+import com.vlg.athletica.data.repository.EventRepository
 import com.vlg.athletica.data.repository.SpotRepository
 import com.vlg.athletica.databinding.FragmentMapBinding
+import com.vlg.athletica.model.Event
 import com.vlg.athletica.model.SpotResponse
+import com.vlg.athletica.model.TimeSlot
 import com.vlg.athletica.presentation.BaseFragment
+import com.vlg.athletica.presentation.EventViewModel
+import com.vlg.athletica.presentation.EventViewModelFactory
 import com.vlg.athletica.presentation.SpotsViewModel
 import com.vlg.athletica.presentation.SpotsViewModelFactory
 import com.yandex.mapkit.MapKitFactory
@@ -35,13 +40,20 @@ class MapFragment : BaseFragment(), InputListener {
         SpotsViewModelFactory(SpotRepository(RemoteInstance))
     }
 
+    private val eventViewModel: EventViewModel by activityViewModels {
+        EventViewModelFactory(EventRepository(RemoteInstance))
+    }
+
     private val placemarkTapListener = MapObjectTapListener { _, point ->
         spotViewModel.getSpotByLatAndLon(floorToSixAfterDot(point.latitude).toString(), floorToSixAfterDot(point.longitude).toString())
 
         val dialog = BottomSheetDialogSpot(thisContext)
+        dialog.setView()
         spotViewModel.spot.observe(viewLifecycleOwner) {
-            dialog.setField(it) {
-
+            dialog.setField(it) { idSpot ->
+                startDialogForCreateSlot(idSpot) { timeSlot, name, i ->
+                    eventViewModel.saveEvent(Event(0, configuration.getIdUser(), timeSlot, name, i, ""))
+                }
             }
         }
         dialog.show()
@@ -124,5 +136,9 @@ class MapFragment : BaseFragment(), InputListener {
 
     private fun floorToSixAfterDot(value: Double) = floor(value * 10000.0) / 10000.0
 
+    private fun startDialogForCreateSlot(spotId: Long, saveSlot: (TimeSlot, String, Int) -> Unit) {
+        val addTimeSlotDialogFragment = AddTimeSlotDialogFragment(saveSlot, spotId)
+        addTimeSlotDialogFragment.show(childFragmentManager, "Time slot add")
+    }
 
 }
